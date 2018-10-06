@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<style>
+		.rectage{
+			position: absolute;
+			background-color:black;
+			width: 100px;
+			height: 100px;
+			top: 50%;
+			left: 50%;
+			margin-top: -50px;
+			margin-left: -50px;
+			visibility: visible;
+		}
+		.outer{
+			position: absolute;
+			border: 1px solid red;
+			width: 300px;
+			height: 300px;
+			top: 50%;
+			left: 50%;
+			margin-top:-150px;
+			margin-left:-150px;
+		}
+		.button{
+			position: relative;
+			width: 15%;
+			left: 10%;
+		}
+	</style>
+	<script>
+		function changeWidth(){
+			var element = document.getElementById("target");
+			element.style.width = "200px";
+			element.style.marginLeft = "-100px";
+		}
+		function changeHeight(){
+			var element = document.getElementById("target");
+			element.style.height = "200px";
+			element.style.marginTop = "-100px";
+		}
+		function changeColor(){
+			var element = document.getElementById("target");
+			element.style.backgroundColor = "red";
+		}
+		function changedVisible(){
+			var element = document.getElementById("target");
+			element.style.visibility = "hidden";
+		}
+		function reset(){
+			var element = document.getElementById("target");
+			element.style.width = "100px";
+			element.style.height = '100px';
+			element.style.marginTop = '-50px';
+			element.style.marginLeft = '-50px';
+			element.style.backgroundColor = 'black';
+			element.style.visibility = 'visible';
+		}
+	</script>
+</head>
+<body>
+	<div class="outer">
+		<button class="button" onclick="changeWidth()">变宽</button>
+		<button class="button" onclick="changeHeight()">变高</button>
+		<button class="button" onclick="changeColor()">变色</button>
+		<button class="button" onclick="changedVisible()">隐藏</button>
+		<button class="button" onclick="reset()">重置</button>
+		<div class="rectage" id="target"></div>
+	</div>
+</body>
+</html>
