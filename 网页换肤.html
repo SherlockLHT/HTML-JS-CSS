@@ -5,37 +5,72 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>网页换肤</title>
     <style>
+        .outer{
+            width: 500px;
+            margin: 0 auto;
+        }
         .skin_change_ul{
-            display: block;
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            overflow: hidden;
         }
         .skin_change_li{
-            display: inline;
-            list-style-type: none;
+            float: left;
             background-color: black;
+            width: 20px;
+            height: 20px;
+            margin: 10px;
         }
-        .navigation_bar{
+        .navigation_ul{
             list-style-type: none;
             margin: 0;
             padding: 0;
+            overflow: hidden;
+            border: 1px solid black;
         }
         .navigation_li{
             float: left;
+            width: 16.6%;
+            height: 40px;
+        }
+        ul li a{
+            text-align: center;
+        }
+        #red{
+            background-color: red;
+            cursor: pointer;
+        }
+        #green{
+            background-color: green;
+            cursor: pointer;
+        }
+        #black{
+            background-color: black;
+            cursor: pointer;
         }
     </style>
+    <script>
+        window.onload=function(){
+            
+        };
+    </script>
 </head>
 <body>
-    <ul class='skin_change_ul'>
-        <li class='skin_change_li'>红</li>
-        <li class='skin_change_li'>绿</li>
-        <li class='skin_change_li'>黑</li>
-    </ul>
-    <ul class='navigation_bar'>
-        <li class='navigation_li'><a>新闻</a></li>
-        <li class='navigation_li'><a>娱乐</a></li>
-        <li class='navigation_li'><a>体育</a></li>
-        <li class='navigation_li'><a>电影</a></li>
-        <li class='navigation_li'><a>音乐</a></li>
-        <li class='navigation_li'><a>旅游</a></li>
-    </ul>
+    <div class="outer">
+        <ul class='skin_change_ul'>
+            <li class='skin_change_li' id="red" title="红色"></li>
+            <li class='skin_change_li' id="green" title="绿色"></li>
+            <li class='skin_change_li' id="black" title="黑色"></li>
+        </ul>
+        <ul class="navigation_ul">
+            <li class='navigation_li'><a>新闻</a></li>
+            <li class='navigation_li'><a>娱乐</a></li>
+            <li class='navigation_li'><a>体育</a></li>
+            <li class='navigation_li'><a>电影</a></li>
+            <li class='navigation_li'><a>音乐</a></li>
+            <li class='navigation_li'><a>旅游</a></li>
+        </ul>
+    </div>
 </body>
 </html>
