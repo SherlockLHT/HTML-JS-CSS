@@ -59,34 +59,73 @@
             background-color: black;
             cursor: pointer;
         }
+        .red_box_click{
+            border: 6px solid red;
+            background-color: white;
+            width: 8px;
+            height: 8px;
+        }
+        .red_box_unclick{
+            border: 0;
+            background-color: red;
+            width: 20px;
+            height: 20px;
+        }
+        .green_box_click{
+            border: 6px solid green;
+            background-color: white;
+            width: 8px;
+            height: 8px;
+        }
+        .green_box_unclick{
+            border: 0;
+            background-color: green;
+            width: 20px;
+            height: 20px;
+        }
+        .black_box_click{
+            border: 6px solid black;
+            background-color: white;
+            width: 8px;
+            height: 8px;
+        }
+        .black_box_unclick{
+            border: 0;
+            background-color: black;
+            width: 20px;
+            height: 20px;
+        }
     </style>
     <script>
         window.onload=function(){
             change2Green();
         };
         function change2Red(){
-            var red_id = document.getElementById("red");
-            red_id.style.border = "4px solid red";
-            red_id.style.backgroundColor = "white";
+            document.getElementById("red").classList.toggle("red_box_click");
+            element.classList.add("box_click");
+            element.style.borderColor = "red";
+            element.style.backgroundColor = "white";
         }   
         function change2Green(){
-            var green_id = document.getElementById("green");
-            green_id.style.border = "4px solid green";
-            green_id.style.backgroundColor = "white";
+            var element = document.getElementById("green");
+            element.classList.add("box_click");
+            element.style.borderColor = "green";
+            element.style.backgroundColor = "white";
         }
         function change2Black(){
-            var black_id = document.getElementById("black");
-            black_id.style.border = "4px solid black";
-            black_id.style.backgroundColor = "white";
+            var element = document.getElementById("black");
+            element.classList.add("box_click");
+            element.style.borderColor = "black";
+            element.style.backgroundColor = "white";
         }
     </script>
 </head>
 <body>
     <div class="outer">
         <ul class='skin_change_ul'>
-            <li class='skin_change_li' id="red" title="红色"></li>
-            <li class='skin_change_li' id="green" title="绿色"></li>
-            <li class='skin_change_li' id="black" title="黑色"></li>
+            <li class='skin_change_li' id="red" title="红色" onclick="change2Red()"></li>
+            <li class='skin_change_li' id="green" title="绿色" onclick="change2Green()"></li>
+            <li class='skin_change_li' id="black" title="黑色" onclick="change2Black()"></li>
         </ul>
         <ul class="navigation_ul">
             <li class='navigation_li'><a href="#news">新闻</a></li>
