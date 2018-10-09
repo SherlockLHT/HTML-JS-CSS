@@ -17,25 +17,26 @@
         }
         .skin_change_li{
             float: left;
-            background-color: black;
             padding: 0;
             width: 20px;
             height: 20px;
-            margin: 10px;
+            margin: 5px;
+            border: 0;
+            cursor: pointer;
         }
         .navigation_ul{
             list-style-type: none;
             margin: 0;
             padding: 0;
             overflow: hidden;
-            border: 1px solid black;
+            border: 1px solid white;
         }
         .navigation_li{
             float: left;
             width: 16.5%;
             height: 40px;
             text-align: center;
-            border-right: 1px solid black;
+            border-right: 1px solid white;
         }
         .navigation_li:last-child{
             border-right: 0;
@@ -43,36 +44,20 @@
         ul li a{
             line-height: 40px;
             text-decoration: none;
+            color: white;
         }
         ul li a:hover{
             text-decoration: underline;
         }
-        #red{
-            background-color: red;
-            cursor: pointer;
-        }
-        #green{
-            background-color: green;
-            cursor: pointer;
-        }
-        #black{
-            background-color: black;
-            cursor: pointer;
-        }
-        .red_box_click{
-            border: 6px solid red;
-            background-color: white;
-            width: 8px;
-            height: 8px;
-        }
+        
         .red_box_unclick{
             border: 0;
             background-color: red;
             width: 20px;
             height: 20px;
         }
-        .green_box_click{
-            border: 6px solid green;
+        .red_box_click{
+            border: 6px solid red;
             background-color: white;
             width: 8px;
             height: 8px;
@@ -83,51 +68,60 @@
             width: 20px;
             height: 20px;
         }
-        .black_box_click{
-            border: 6px solid black;
+        .green_box_click{
+            border: 6px solid green;
             background-color: white;
             width: 8px;
             height: 8px;
         }
+        
         .black_box_unclick{
             border: 0;
             background-color: black;
             width: 20px;
             height: 20px;
         }
+        .black_box_click{
+            border: 6px solid black;
+            background-color: white;
+            width: 8px;
+            height: 8px;
+        }
     </style>
     <script>
         window.onload=function(){
-            change2Green();
         };
         function change2Red(){
-            document.getElementById("red").classList.toggle("red_box_click");
-            element.classList.add("box_click");
-            element.style.borderColor = "red";
-            element.style.backgroundColor = "white";
-        }   
+            document.getElementById("red").classList.add("red_box_click");
+            document.getElementById("green").classList.remove("green_box_click");
+            document.getElementById("black").classList.remove("black_box_click");
+            document.getElementById("skin_ul").style.backgroundColor = "red";
+            document.getElementsByTagName("body")[0].style.backgroundColor = "#ffdddd";
+        }
         function change2Green(){
-            var element = document.getElementById("green");
-            element.classList.add("box_click");
-            element.style.borderColor = "green";
-            element.style.backgroundColor = "white";
+            document.getElementById("red").classList.remove("red_box_click");
+            document.getElementById("green").classList.add("green_box_click");
+            document.getElementById("black").classList.remove("black_box_click");
+            document.getElementById("skin_ul").style.backgroundColor = "green";
+            document.getElementsByTagName("body")[0].style.backgroundColor = "#a3c5a8";
         }
         function change2Black(){
-            var element = document.getElementById("black");
-            element.classList.add("box_click");
-            element.style.borderColor = "black";
-            element.style.backgroundColor = "white";
+            document.getElementById("red").classList.remove("red_box_click");
+            document.getElementById("green").classList.remove("green_box_click");
+            document.getElementById("black").classList.add("black_box_click");
+            document.getElementById("skin_ul").style.backgroundColor = "black";
+            document.getElementsByTagName("body")[0].style.backgroundColor = "#cccccc";
         }
     </script>
 </head>
-<body>
+<body style="background-color: #a3c5a8">
     <div class="outer">
         <ul class='skin_change_ul'>
-            <li class='skin_change_li' id="red" title="红色" onclick="change2Red()"></li>
-            <li class='skin_change_li' id="green" title="绿色" onclick="change2Green()"></li>
-            <li class='skin_change_li' id="black" title="黑色" onclick="change2Black()"></li>
+            <li class='skin_change_li red_box_unclick' id="red" title="红色" onclick="change2Red()"></li>
+            <li class="skin_change_li green_box_unclick green_box_click" id="green" title="绿色" onclick="change2Green()"></li>
+            <li class='skin_change_li black_box_unclick' id="black" title="黑色" onclick="change2Black()"></li>
         </ul>
-        <ul class="navigation_ul">
+        <ul class="navigation_ul" id="skin_ul" style="background-color: green">
             <li class='navigation_li'><a href="#news">新闻</a></li>
             <li class='navigation_li'><a href="#joy">娱乐</a></li>
             <li class='navigation_li'><a href="sports">体育</a></li>
