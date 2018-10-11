@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>鼠标移入移出样式改变</title>
+    <style>
+        .outer_div{
+            border: 10px solid black;
+            background-color: black;
+            width: 200px;
+            height: 200px;
+            margin: auto;
+            padding: 20px;
+        }
+        .outer_div:hover{
+            border-color: red;
+            background-color: #f0f0f0;
+        }
+        .outer_div a{
+            color: white;
+        }
+        .outer_div:hover a{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="outer_div">
+        <a>鼠标移入改变样式</a><br>
+        <a>鼠标移出恢复</a>
+    </div>
+</body>
+</html>
