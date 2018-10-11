@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>用循环将三个DIV变成红色</title>
+    <style>
+        .button_style{
+            display: block;
+            margin: auto;
+        }
+        .outer{
+            width: 330px;
+            height: 100px;
+            margin: 10px auto;
+        }
+        .inner{
+            float: left;
+            width: 100px;
+            height: 100px;
+            margin: 0 5px;
+            background-color: black;
+        }
+    </style>
+    <script>
+        function buttonClick(){
+            var elements = document.getElementsByClassName("inner");
+            for (let index = 0; index < elements.length; index++) {
+                const element = elements[index];
+                element.style.backgroundColor = "red";
+            }
+        }
+    </script>
+</head>
+<body>
+    <button class="button_style" onclick="buttonClick()">点击将DIV变成红色</button>
+    <div class="outer">
+        <div class="inner"></div>
+        <div class="inner"></div>
+        <div class="inner"></div>
+    </div>
+</body>
+</html>
