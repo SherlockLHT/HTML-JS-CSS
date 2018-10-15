@@ -3,10 +3,47 @@
 <head>
     <meta charset="utf-8">
     <title>求数组中所有数字的和</title>
+    <style>
+        div {
+            width: 500px;
+            margin: 10px auto;
+        }
+        button {
+            margin: 10px 0;
+            font-size: 16px;
+        }
+        .sum {
+            font-size: 30px;
+            color: red;
+            display: none;
+        }
+    </style>
+    <script>
+        window.onload=function(){
+            document.getElementsByTagName('input')[0].value
+            ='1,2,3,4,5,6,7,8,9,10,11,12,13,14,16';
+        }
+        function buttonClick(){
+            var element = document.getElementsByClassName('sum')[0];
+            element.style.display='block';
+            element.innerHTML = getSum(document.getElementsByTagName('input')[0].value);
+        }
+        function getSum(text){
+            var strs = text.split(',');
+            var sum = 0;
+            for (let index = 0; index < strs.length; index++) {
+                sum = sum + parseInt(strs[index]);
+            }
+            return sum;
+        }
+    </script>
 </head>
 <body>
     <div>
         <input type="text">
+        <span>输入数字求和，数字之间用半角","号分隔</span>
+        <p><button onclick="buttonClick()">求和</button></p>
+        <strong class='sum'></strong>
     </div>
 </body>
 </html>
