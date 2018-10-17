@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>函数传参，改变div任意属性</title>
+    <style>
+        .outer_div{
+            width: 300px;
+            margin: auto;
+        }
+        .style_div{
+            width: 200px;
+            height: 200px;
+            margin: auto;
+            padding: 10px;
+            background-color: black;
+            color: white;
+        }
+        p:last-of-type{
+            display: block;
+            margin: 10px 80px;;
+        }
+    </style>
+    <script src="../jquery-3.3.1.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("#sure").click(function(){
+                $("#target").css(
+                    $("#name").val(), 
+                    $("#value").val());
+            });
+            $("#set").click(function(){
+                $("#target").removeAttr('style');
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="outer_div">
+        <p>
+            <label>属性名：</label>
+            <input type="text" value="background", id="name">
+        </p>
+        <p>
+            <label>属性值：</label>
+            <input type="text" value="blue", id="value">
+        </p>
+        <p>
+            <button id="sure">确定</button>
+            <button id="set">重置</button>
+        </p>
+    </div>
+    <div class="style_div" id="target">
+        在上方输入框输入"属性名"及"属性值"，点击确定按钮查看效果。
+    </div>
+</body>
+</html>
