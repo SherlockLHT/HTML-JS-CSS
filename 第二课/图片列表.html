@@ -5,25 +5,48 @@
     <title>图片列表</title>
     <style>
         .outer_div{
-            width: 500px;
+            width: 570px;
             margin: auto;
+            padding: 0 0 10px 0;
             border: 1px solid black;
             overflow: hidden;
         }
         ul{
-            list-style-type: none;
+            list-style: none;
+            margin: 0;
+            padding: 0 0 10px 10px;
         }
         li{
-            float: left;
-            border: 1px solid black;
+            margin: 10px 10px 0 0;
+            width: 100px;
+            float: left; 
+            border: 1px solid black;    
+        }
+        li img{
+            width: 100%;
+            opacity: 0.3;
+            cursor: pointer;
+        }
+        .current{
+            opacity: 1;
         }
     </style>
     <script src="../jquery-3.3.1.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("img").mouseenter(function(e){
+                $(e.target).addClass("current");
+            });
+            $("img").mouseleave(function(e){
+                $(e.target).removeClass("current");
+            });
+        });
+    </script>
 </head>
 <body>
     <div class="outer_div">
         <ul>
-            <li><img src="../images/1.jpg"></li>
+            <li><img src="../images/1.jpg" ></li>
             <li><img src="../images/2.jpg"></li>
             <li><img src="../images/3.jpg"></li>
             <li><img src="../images/4.jpg"></li>
