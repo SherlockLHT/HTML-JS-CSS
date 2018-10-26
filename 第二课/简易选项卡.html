@@ -6,13 +6,26 @@
     <title>简易选项卡</title>
     <link rel="stylesheet" href="../bootstrap-3.3.7/dist/css/bootstrap.css">
     <style>
-        .temp {
-            border: 1px solid red;
-            height: 100px;
+        .outer-div{
+            margin: 20px 0;
         }
-        .title-ul{
+        .title-div{
             background-color: black;
             color: white;
+            border: 1px solid black;
+            font-size: 20px;
+        }
+        .title-ul{
+            margin: 0;
+            padding: 0;
+        }
+        .title-li{
+            display: list-item;
+            padding: 10px 0;
+        }
+        .current{
+            background-color: #cccccc;
+            color: black;
         }
     </style>
     <script src="../jquery-3.3.1.js"></script>
@@ -21,12 +34,12 @@
 
 <body>
     <div class="container">
-        <div class="row">
-            <div class="col-sm-8 col-sm-push-2 temp">
+        <div class="row outer-div">
+            <div class="col-sm-6 col-sm-push-3 title-div">
                 <ul class="list-unstyled list-inline title-ul">
-                    <li>第一课</li>
-                    <li>第二课</li>
-                    <li>第三课</li>
+                    <li class="title-li ">第一课</li>
+                    <li class="title-li">第二课</li>
+                    <li class="title-li">第三课</li>
                 </ul>
             </div>
         </div>
