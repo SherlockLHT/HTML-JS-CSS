@@ -1,21 +1,36 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8">
     <title>简易选项卡</title>
+    <link rel="stylesheet" href="../bootstrap-3.3.7/dist/css/bootstrap.css">
     <style>
-        .outer_div{
-            width: 500px;
-            border: 1px solid black;
-            height: 500px;
-            margin: auto;
+        .temp {
+            border: 1px solid red;
+            height: 100px;
+        }
+        .title-ul{
+            background-color: black;
+            color: white;
         }
     </style>
-    <script></script>
+    <script src="../jquery-3.3.1.js"></script>
+    <script src="../bootstrap-3.3.7/dist/js/bootstrap.js"></script>
 </head>
-<body>
-    <div class="outer_div">
 
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-8 col-sm-push-2 temp">
+                <ul class="list-unstyled list-inline title-ul">
+                    <li>第一课</li>
+                    <li>第二课</li>
+                    <li>第三课</li>
+                </ul>
+            </div>
+        </div>
     </div>
 </body>
+
 </html>
