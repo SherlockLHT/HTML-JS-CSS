@@ -6,42 +6,123 @@
     <title>简易选项卡</title>
     <link rel="stylesheet" href="../bootstrap-3.3.7/dist/css/bootstrap.css">
     <style>
-        .outer-div{
-            margin: 20px 0;
+        .outer-div {
+            margin: 20px 0 0 0;
         }
-        .title-div{
+
+        .title-div {
             background-color: black;
             color: white;
             border: 1px solid black;
-            font-size: 20px;
+            font-size: 18px;
+            padding: 0;
+            height: 50px;
         }
-        .title-ul{
+
+        .content-div {
+            margin: 0;
+            border: 1px solid black;
+            border-top: 0;
+        }
+
+        .title-ul {
+            height: 100%;
             margin: 0;
             padding: 0;
         }
-        .title-li{
-            display: list-item;
-            padding: 10px 0;
+
+        .title-li {
+            line-height: 48px;
+            padding: 0;
         }
-        .current{
+
+        .current {
             background-color: #cccccc;
             color: black;
+        }
+
+        .content-ul {
+            display: none;
+            line-height: 25px;
+            padding: 10px;
+            margin: 0;
+        }
+        .current-content {
+            display: block;
         }
     </style>
     <script src="../jquery-3.3.1.js"></script>
     <script src="../bootstrap-3.3.7/dist/js/bootstrap.js"></script>
+    <script>
+        $(document).ready(function () {
+            $(".title-li").mouseenter(function (e) {
+                var title_lis = $(".title-li");
+                var content_lis = $(".content-ul");
+                for (var index = 0; index < title_lis.length; index++) {
+                    if(title_lis[index] === e.target){
+                        title_lis[index].classList.add("current");
+                        content_lis[index].classList.add("current-content");
+                    }
+                    else{
+                        title_lis[index].classList.remove("current");
+                        content_lis[index].classList.remove("current-content");
+                    }
+                }
+            });
+        });
+    </script>
 </head>
-
 <body>
     <div class="container">
-        <div class="row outer-div">
-            <div class="col-sm-6 col-sm-push-3 title-div">
-                <ul class="list-unstyled list-inline title-ul">
-                    <li class="title-li ">第一课</li>
-                    <li class="title-li">第二课</li>
-                    <li class="title-li">第三课</li>
-                </ul>
-            </div>
+        <div class="col-sm-8 col-sm-push-2 title-div outer-div">
+            <ul class="list-unstyled list-inline title-ul">
+                <li class="title-li current">第一课</li>
+                <li class="title-li">第二课</li>
+                <li class="title-li">第三课</li>
+            </ul>
+        </div>
+        <div class="col-sm-8 col-sm-push-2 content-div">
+            <ul class="content-ul current-content">
+                <li>网页特效原理分析</li>
+                <li>响应用户操作</li>
+                <li>提示框效果</li>
+                <li>事件驱动</li>
+                <li>元素属性操作</li>
+                <li>动手编写第一个JS特效</li>
+                <li>引入函数</li>
+                <li>网页换肤效果</li>
+                <li>展开/收缩播放列表效果</li>
+            </ul>
+            <ul class="content-ul">
+                <li>改变网页背景颜色</li>
+                <li>函数传参</li>
+                <li>高重用性函数的编写</li>
+                <li>126邮箱全选效果</li>
+                <li>循环及遍历操作</li>
+                <li>调试器的简单使用</li>
+                <li>典型循环的构成</li>
+                <li>for循环配置if判断</li>
+                <li>className的使用</li>
+                <li>innerHTML的使用</li>
+                <li>嘎纳印象效果</li>
+                <li>数组</li>
+                <li>字符串连接</li>
+            </ul>
+            <ul class="content-ul">
+                <li>JavaScript组成：ECMAScript、DOM、BOM，JavaScript兼容性来源</li>
+                <li>JavaScript出现的位置、优缺点</li>
+                <li>变量、类型、typeof、数据类型转换、变量作用域</li>
+                <li>闭包：什么是闭包、简单应用、闭包缺点</li>
+                <li>运算符：算术、赋值、关系、逻辑、其他运算符</li>
+                <li>程序流程控制：判断、循环、跳出</li>
+                <li>命名规范：命名规范及必要性、匈牙利命名法</li>
+                <li>函数详解：函数构成、调用、事件、传参数、可变参、返回值</li>
+                <li>定时器的使用：setInterval、setTimeout</li>
+                <li>定时器应用：站长站导航效果</li>
+                <li>定时器应用：自动播放的选项卡</li>
+                <li>定时器应用：数码时钟</li>
+                <li>程序调试方法</li>
+            </ul>
         </div>
     </div>
 </body>
