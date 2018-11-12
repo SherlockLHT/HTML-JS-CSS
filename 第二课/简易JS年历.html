@@ -7,34 +7,99 @@
     <link rel="stylesheet" href="../bootstrap-3.3.7/dist/css/bootstrap.css">
     <style>
         .outer-div {
+            position: relative;
             background-color: #eaeaea;
+            top: 20px;
+            width: 250px;
+            margin: 10px auto;
+            padding: 0;
             overflow: hidden;
         }
-
-        .cell {
-            height: 50px;
+        ul{
+            overflow: hidden;
+            margin: 0;
             padding: 0;
-            margin: 10px;
+        }
+        li{
+            color: white;
+            height: 50px;
+            width: 50px;
+            padding: 5px 0 0 0;
+            margin: 10px 0 0 10px;
             border: 1px solid #424242;
             background-color: #424242;
+            list-style-type: none;
+            float: left;
+            text-align: center;
+            vertical-align: middle;
+            font-weight: bold;
         }
-        .cell:hover{
-            background-color: white;
+        .current{
+            color: #ff6699;
+            background: white;
+            cursor: pointer;
+        }
+        .detail{
+            border: 1px solid white;
+            margin: 10px;
+        }
+        p{
+            padding: 0;
+            margin: 5px;
+        }
+        span{
+            padding: 0;
+            margin: 5px;
         }
     </style>
     <script src="../jquery-3.3.1.js"></script>
-    <script src="../bootstrap-3.3.7/dist/js/bootstrap.js"></script>
+    <script>
+        $(document).ready(function(){
+            var details=new Array();
+            details[0]="元旦：1月1日至3日放假三天";
+            details[1]="春节：2月2日至8日放假7天";
+            details[2]="妇女节：3月8日妇女节，与我无关";
+            details[3]="清明节：4月3日至5日放假3天";
+            details[4]="劳动节：4月30日至5月2日放假3天";
+            details[5]="端午节：6月4日至6日放假3天";
+            details[6]="小暑：7月7日小暑。不放假";
+            details[7]="七夕节：8月6日七夕节。不放假";
+            details[8]="中秋节：9月10日至12日放假3天";
+            details[9]="国庆节：10月1日至7日放假7天";
+            details[10]="立冬：11月8日立冬。不放假";
+            details[11]="艾滋病日:12月1日<br>废除奴隶制国际日:12月2日";
+
+
+            $("li").mouseenter(function(e){
+                $(".current").removeClass("current");
+                e.target.classList.add("current");
+                var id=e.target.id;
+                $("span").text(id);
+                $("p").html(details[id-1]);
+            });
+        });
+    </script>
 </head>
 
 <body>
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-4 outer-div">
-                <div class="col-sm-2 cell"></div>
-                <div class="col-sm-2 cell"></div>
-                <div class="col-sm-2 cell"></div>
-                <div class="col-sm-2 cell"></div>
-            </div>
+    <div class="outer-div">
+        <ul>
+            <li id="1" class="current">1<br>JAN</li>
+            <li id="2">2<br>FER</li>
+            <li id="3">3<br>MAR</li>
+            <li id="4">4<br>APR</li>
+            <li id="5">5<br>MAY</li>
+            <li id="6">6<br>JUN</li>
+            <li id="7">7<br>JUL</li>
+            <li id="8">8<br>AUG</li>
+            <li id="9">9<br>SEP</li>
+            <li id="10">10<br>OCT</li>
+            <li id="11">11<br>NOV</li>
+            <li id="12">12<br>DEC</li>
+        </ul>
+        <div class="detail">
+            <strong><span>1</span>月节日</strong>
+            <p>元旦：1月1日至3日放假三天。 </p>    
         </div>
     </div>
 </body>
