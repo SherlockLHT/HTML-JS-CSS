@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>复选框反选</title>
+    <style>
+        .outer{
+            width: 130px;
+            border: 1px solid black;
+            border-radius: 4px;
+            margin: 10px auto;
+        }
+        dl{
+            margin: 0;
+        }
+        dt{
+            border-bottom: 1px solid black;
+            margin: 0 5px;
+            padding: 5px;
+        }
+        dd{
+            margin: 0 5px;
+            padding: 5px;
+        }
+        label{
+            display: block;
+            margin: 0;
+            padding-bottom: 5px;
+        }
+        #all-select{
+            display: inline;
+        }
+    </style>
+    <script src="../jquery-3.3.1.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("#all-select").click(function(e){
+                var is_checked = e.target.checked;
+                var text = is_checked? "全不选": "全选";
+                var all_checkbox = document.getElementsByTagName("input");
+                console.log(all_checkbox.length);
+                for(var i = 1; i < all_checkbox.length; i++){
+                    all_checkbox[i].checked=is_checked;
+                }
+                //$("input[type=checkbox").prop("checked", is_checked);
+                $("#first").text(text);
+            });
+        });
+        function clicka(){
+            var all_checkbox = document.getElementsByTagName("input");
+            for(var i = 0; i < all_checkbox.length; i++){
+                all_checkbox[i].checked=!all_checkbox[i].checked;
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="outer">
+        <dl>
+            <dt>
+                <input type="checkbox" id="all-select">
+                <label for="all-select" style="display: inline;" id="first">全选</label>
+                <a href="javascript:void(0);" onclick="clicka()">反选</a>
+            </dt>
+            <dd>
+                <label><input type="checkbox">选项（一）</label>
+                <label><input type="checkbox">选项（二）</label>
+                <label><input type="checkbox">选项（三）</label>
+                <label><input type="checkbox">选项（四）</label>
+                <label><input type="checkbox">选项（五）</label>
+                <label><input type="checkbox">选项（六）</label>
+                <label><input type="checkbox">选项（七）</label>
+                <label><input type="checkbox">选项（八）</label>
+                <label><input type="checkbox">选项（九）</label>
+                <label><input type="checkbox">选项（十）</label>
+            </dd>
+        </dl>
+    </div>
+</body>
+</html>
