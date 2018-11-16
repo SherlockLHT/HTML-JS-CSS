@@ -18,13 +18,35 @@
         }
         button{
             font-size: 18px;
+            vertical-align: middle;
+            height: 100%;
         }
     </style>
+    <script src="../jquery-3.3.1.js"></script>
+    <script>
+        window.onload=function(){
+            $("button").click(function(){
+                var first = $("#first").val();
+                var second = $("#second").val();
+                var sum = parseInt(first) + parseInt(second);
+                $("span").text(sum);
+            });
+            //jquery方式
+            $("input[type=text]").on("input propertychange", function(e){
+                var value = $(e.target).val();
+                if(value.length === 0){
+                    value = "0";
+                }
+                value = value.replace(/[^0-9-]+/,"");
+                $(e.target).val(parseInt(value));
+            });
+        }
+    </script>
 </head>
 <body>
-    <input type="text">
+    <input type="text" id="first" value="0">
     <strong> + </strong>
-    <input type="text">
+    <input type="text" id="second" value="0">
     <strong> = </strong>
     <strong><span> ? </span></strong>
     <button>求和</button>
