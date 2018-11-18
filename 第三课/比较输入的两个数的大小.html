@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>比较输入两个数的大小</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body{
+            text-align: center;
+        }
+        input[type="text"]{
+            width: 80px;
+            height: 20px;
+        }
+        input[type="button"]{
+            font-size: 18px;
+        }
+        span{
+            color: red;
+        }
+    </style>
+    <script src="../jquery-3.3.1.js"></script>
+    <script>
+        window.onload=function(){
+            document.querySelector("input[type=button]").onclick=function(){
+                var first = parseInt(document.querySelector("#first").value);
+                var second = parseInt(document.querySelector("#second").value);
+                var max = first > second? first: second;
+                document.querySelector("span").innerText=max;
+            }
+            document.querySelectorAll("input[type=text]").forEach(function(element){
+                element.oninput=function(event){
+                    var value = event.target.value;
+                    if (value.length === 0) {
+                        value = 0;
+                    } else {
+                        value = value.replace(/[^0-9-]+/,"");
+                    }
+                    event.target.value=parseInt(value);
+                }
+            });
+        };
+    </script>
+</head>
+<body>
+    <input type="text" id="first" value="0">
+    <strong> VS </strong>
+    <input type="text" id="second" value="0">
+    <input type="button" value="最大的数是>>">
+    <strong><span>?</span></strong>
+</body>
+</html>
