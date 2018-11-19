@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>倒计时时钟</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        .outer{
+            width: 300px;
+            height: 150px;
+            background-color: black;
+            margin: 10px auto;
+            text-align: center;
+            padding: 30px 0 0 0;
+        }
+        .data{
+            border: 2px solid #b4b4b4;
+            background-color: white;
+            color: black;
+            font-size: 30px;
+            padding: 0 10px;
+        }
+        .desc{
+            color: white;
+            font-size: 25px;
+        }
+        input{
+            width: 200px;
+            height: 50px;
+            margin: 30px 0 0 0;
+            border-radius: 12px;
+            border: 0;
+            background-color: green;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+        }
+        .stop{
+            background-color: red;
+        }
+    </style>
+    <script>
+        window.onload=function(){
+            var is_runing = false;
+            var time_id;
+            document.querySelector("input[type=button]").onclick=function(e){
+                if(is_runing){
+                    clearTimeout(time_id);
+                } else {
+                    console.log("start count");
+                    time_id = setTimeout(startCount, 1000);
+                }
+                is_runing=!is_runing;
+                e.target.value=is_runing? "停止": "启动";
+                e.target.classList.toggle("stop");
+            }
+            function startCount(){
+                var second_element = document.querySelector("#second");
+                var minutes_element = document.querySelector("#minute");
+                var second = parseInt(second_element.innerText) - 1;
+                var minutes = parseInt(minutes_element.innerText);
+
+                if(second < 0){
+                    second = 59;
+                    minutes = minutes - 1;
+                }
+                if(minutes < 0){
+                    minutes = 0;
+                    second = 0;
+                    clearTimeout(time_id);
+                    return;
+                }
+
+                second_element.innerText = format(second);
+                minutes_element.innerText = format(minutes);
+
+                time_id = setTimeout(startCount, 1000);
+            }
+            function format(str){
+                return str.toString().replace(/^(\d)$/, "0$1");
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="outer">
+        <span class="data" id="minute">01</span>
+        <span class="desc">分钟</span>
+        <span class="data" id="second">10</span>
+        <span class="desc">秒</span>
+        <input type="button" class="" value="启动">
+    </div>
+</body>
+</html>
