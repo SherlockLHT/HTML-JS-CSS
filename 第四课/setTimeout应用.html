@@ -6,31 +6,85 @@
     <title>setTimeout应用</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
-        div{
-            width: 900px;
+        .outer{
+            width: 865px;
+            height: 36px;
             overflow: hidden;
             margin: 10px auto;
             padding: 5px;
+            background-image: url(../images/nav_bg.png);
+            background-position-y: -108px; 
+            background-position-x: 0; 
+            background-repeat: repeat-x;
+            border: 0;
+            padding: 0;
+            vertical-align: middle;
+            border-radius: 6px;
+            
         }
         ul{
-            height: 50px;
-            background-color: blue;
+            padding: 0;
+            margin: 0;
+            background-repeat: no-repeat;
+            height: 100px;
         }
         li{
+            margin-left: 0px;
             list-style-type: none;
             float: left;
+            width: 108px;
+            color: white;
+            vertical-align: middle;
+            text-align: center;
+            line-height: 36px;
+            font-size: 14px;
+            background-image: url(../images/nav_bg.png);
+            background-position-y: -108px;
+            background-repeat: no-repeat;
+        }
+        li:first-of-type{
+            background-position-y: -36px;
+            margin-left: 0;
+        }
+        li:last-of-type{
+            background-position-y: -108px;
+        }
+        li:hover{
+            background-position-y: -144px;
+            background-position-x: 2px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .inner{
             width: 100px;
+            height: 100px;
+            background-color: black;
+            display: block;
         }
     </style>
     <script>
-    
+        
     </script>
 </head>
 <body>
-    <div>
+    <div class="outer">
         <ul>
             <li>站长之家</li>
-            <li>行业资讯</li>
+            <li>
+                <a>行业资讯</a>
+                <div class="inner">
+                    <p>
+                        <a>业界动态</a>
+                        <a>收购融资</a>
+                        <a>门户动态</a>
+                        <a>搜索引擎</a>
+                        <a>网络游戏</a>
+                        <a>电子商务</a>
+                        <a>广告传媒</a>
+                        <a>厂商开发</a>
+                    </p>
+                </div>
+            </li>
             <li>站长在线</li>
             <li>网站运营</li>
             <li>设计在线</li>
