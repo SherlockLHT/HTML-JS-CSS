@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>自动播放幻灯片</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body{
+            background-color: black;
+        }
+        .outer{
+            width: 500px;
+            height: 200px;
+            background-color: white;
+            margin: 10px auto;
+            padding: 0;
+            overflow: hidden;
+            border-radius: 8px;
+            position: relative;
+        }
+        img{
+            width: 100%;
+            height: 178px;
+            border: 1px solid #cccccc;
+            z-index: 0;
+            /* opacity: 0.1; */
+        }
+        img:first-of-type{
+            /* opacity: 0.9; */
+        }
+        ul{
+            padding: 0;
+            margin: 0;
+        }
+        .img-ul{
+            position: relative;
+        }
+        li{
+            list-style-type: none;
+            margin: 0;
+            float: left;
+        }
+        .img-li{
+            position: absolute;
+            height: 180px;
+            padding: 10px;
+            top: 0;
+            left: 0;
+        }
+        .count-ul{
+            position: absolute;
+            right: 12px;
+            bottom: 16px;
+        }
+        .count-li{
+            width: 20px;
+            height: 20px;
+            line-height: 20px;
+            border-radius: 10px;
+            padding: 0;
+            margin: 0 5px 0 0;
+            z-index: 2;
+            text-align: center;
+            vertical-align: middle;
+            color: #fbf7f3;
+            font-family: Arial;
+            font-size: 12px;
+            background-color: #fbb344;
+            cursor: pointer;
+        }
+        .current-count-li{
+            background-color: #ff6600;
+            font-weight: bold;
+        }
+    </style>
+    <script src="../jquery-3.3.1.js"></script>
+    <script>
+        window.onload=function(){
+            var time_id;
+            var count_lis = document.querySelectorAll(".count-li");
+            var imgs = document.querySelectorAll("img");
+            imgs.forEach(function(img){
+                img.style.opacity=0;
+            });
+            //开始自动切换
+            time_id = setTimeout(function(){
+                startSwitchTo(0)
+            }, 100);
+            //鼠标悬停事件
+            count_lis.forEach(function(li, index){
+                li.onmouseover=function(){
+                    imgs.forEach(function(img){
+                        img.style.opacity=0;
+                    });
+                    clearTimeout(time_id);
+                    time_id = setTimeout(function(){
+                        startSwitchTo(index)
+                    }, 100);
+                }
+            });
+            //自动切换函数
+            function startSwitchTo(index){
+                //切换图片的同时，标记也要跟着切换
+                count_lis.forEach(function(count_li){
+                    count_li.classList.remove("current-count-li");
+                });
+                count_lis[index].classList.add("current-count-li");
+                var value = parseFloat(imgs[index].style.opacity);
+                if(value >= 1){
+                    time_id = setTimeout(function(){
+                        index++;
+                        index = index < imgs.length? index: 0;
+                        console.log("current >=1, switch to next " + index);
+                        startSwitchTo(index)
+                    }, 2000);
+                    return;
+                }
+                value += 0.2;
+                imgs[index].style.opacity = value;
+                if(value < 1){
+                    time_id = setTimeout(function(){
+                        startSwitchTo(index)
+                    }, 100);
+                } else {
+                    time_id = setTimeout(function(){
+                        imgs.forEach(function(img){
+                            img.style.opacity=0;
+                        });
+                        index++;
+                        index = index < imgs.length? index: 0;
+                        console.log("switch to next " + index);
+                        startSwitchTo(index)
+                    }, 2000);
+                }
+            }
+        };
+    </script>
+</head>
+<body>
+    <div class="outer">
+        <ul class="img-ul">
+            <li class="img-li"><img src="./01.jpg" style="opacity:1"></li>
+            <li class="img-li"><img src="./02.jpg" style="opacity:0"></li>
+            <li class="img-li"><img src="./03.jpg" style="opacity:0"></li>
+            <li class="img-li"><img src="./04.jpg" style="opacity:0"></li>
+            <li class="img-li"><img src="./05.jpg" style="opacity:0"></li>
+        </ul>
+        <ul class="count-ul">
+            <li class="count-li current-count-li">1</li>
+            <li class="count-li">2</li>
+            <li class="count-li">3</li>
+            <li class="count-li">4</li>
+            <li class="count-li">5</li>
+        </ul>
+    </div>
+</body>
+</html>
