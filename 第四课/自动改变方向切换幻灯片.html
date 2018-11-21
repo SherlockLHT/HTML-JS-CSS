@@ -24,10 +24,6 @@
             height: 178px;
             border: 1px solid #cccccc;
             z-index: 0;
-            /* opacity: 0.1; */
-        }
-        img:first-of-type{
-            /* opacity: 0.9; */
         }
         ul{
             padding: 0;
@@ -96,6 +92,11 @@
                     });
                     clearTimeout(time_id);
                     time_id = setTimeout(function(){
+                        if(index == 0){
+                            forward = true;
+                        } else if(index == 4){
+                            forward = false;
+                        }
                         startSwitchTo(index)
                     }, 100);
                 }
