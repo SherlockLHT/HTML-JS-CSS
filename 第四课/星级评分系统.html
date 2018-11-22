@@ -30,14 +30,22 @@
             line-height: 30px;
             list-style-type: none;
             padding: 0;
-            margin: 0 1px;
+            margin: 0;
             float: left;
             border: 0;
             height: 25px;
+            width: 25px;
             overflow: hidden;
+            background-image: url(./star.png);
+            background-repeat: no-repeat;
+            background-position-y: 0;
+        }
+        .over{
+            background-position-y: -28px;
         }
         img{
             width: 100%;
+            background-position-y: -28px;
         }
         strong{
             color: #ff662f;
@@ -46,16 +54,43 @@
             display: none;
         }
     </style>
+    <script>
+        window.onload=function(){
+            var all_stars = document.querySelectorAll("li");
+            var span_desc = document.querySelectorAll("desc");
+            all_stars.forEach(function(star, index){
+                star.onmouseover=function(){
+                    overStar(index);
+                }
+                star.onmouseleave=function(){
+                    leaveStar(index);
+                }
+                star.onclick=function(){
+                    
+                }
+            });
+            function overStar(index){
+                for(var i = 0; i <= index; i++){
+                    all_stars[i].classList.add("over");
+                }
+            }
+            function leaveStar(index){
+                for(var i = 0; i <= index; i++){
+                    all_stars[i].classList.remove("over");
+                }
+            }
+        }
+    </script>
 </head>
 <body>
     <div class="outer">
         <span>点击星星就能打分</span>
         <ul>
-            <li><img src="./star.png"></li>
-            <li><img src="./star.png"></li>
-            <li><img src="./star.png"></li>
-            <li><img src="./star.png"></li>
-            <li><img src="./star.png"></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
         </ul>
         <span class="desc"><strong>1 分 </strong>(差得太离谱，与卖家描述的严重不符，非常不满)</span>
         <span class="desc"><strong>2 分 </strong>(部分有破损，与卖家描述的不符，不满意)</span>
