@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>当前输入框高亮显示</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        .outer{
+            width: 400px;
+            height: 180px;
+            border: 2px solid #ff6600;
+            margin: 10px auto;
+            background-color: #fef4eb;
+        }
+        h3{
+            margin: 0;
+            padding: 10px;
+            border-bottom: 2px solid #ff6600;
+            color: #fe791e;
+            background-color: #ffebd7;
+        }
+        p{
+            margin: 10px;
+            padding: 0;
+        }
+        label{
+            display: inline-block;
+            width: 80px;
+            text-align: right;
+            font-size: 14px;
+        }
+        .text-edit{
+            width: 208px;
+            height: 31px;
+            border: 0;
+            padding: 0;
+            margin: 0;
+            background-image: url("input.png");
+        }
+        .text-edit-focus{
+            background-position-y: -31px;
+        }
+        input[type=button]{
+            background-color: #ff6600;
+            border: 0;
+            color: white;
+            width: 100px;
+            height: 30px;
+            text-align: center;
+            position: relative;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 4px;
+        }
+    </style>
+    <script>
+        window.onload=function(){
+            document.querySelectorAll(".text-edit").forEach(function(text, index){
+                text.onfocus=function(){
+                    this.classList.add("text-edit-focus");
+                }
+                text.onblur=function(){
+                    this.classList.remove("text-edit-focus");
+                }
+            });
+        }
+    </script>
+</head>
+<body>
+    <form class="outer">
+        <h3>用户登录</h3>
+        <p>
+            <label>用户名：</label>
+            <input type="text" class="text-edit">
+        </p>
+        <p>
+            <label>密码：</label>
+            <input type="password" class="text-edit">
+        </p>
+        <input type="button" value="登录">
+    </form>
+</body>
+</html>
