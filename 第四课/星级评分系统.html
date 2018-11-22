@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>星级评分系统</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        .outer{
+            width: 550px;
+            height: 25px;
+            margin: 10px auto;
+        }
+        span{
+            float: left;
+            line-height: 25px;
+            font-size: 12px;
+            font-family: Arial, Helvetica, sans-serif;
+            color: #878787;
+            margin: 0 10px 0 5px;
+        }
+        ul{
+            display: inline;
+            overflow: hidden;
+            padding: 0;
+            margin: 0;
+        }
+        li{
+            vertical-align: middle;
+            line-height: 30px;
+            list-style-type: none;
+            padding: 0;
+            margin: 0 1px;
+            float: left;
+            border: 0;
+            height: 25px;
+            overflow: hidden;
+        }
+        img{
+            width: 100%;
+        }
+        strong{
+            color: #ff662f;
+        }
+        .desc{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="outer">
+        <span>点击星星就能打分</span>
+        <ul>
+            <li><img src="./star.png"></li>
+            <li><img src="./star.png"></li>
+            <li><img src="./star.png"></li>
+            <li><img src="./star.png"></li>
+            <li><img src="./star.png"></li>
+        </ul>
+        <span class="desc"><strong>1 分 </strong>(差得太离谱，与卖家描述的严重不符，非常不满)</span>
+        <span class="desc"><strong>2 分 </strong>(部分有破损，与卖家描述的不符，不满意)</span>
+        <span class="desc"><strong>3 分 </strong>(质量一般，没有卖家描述的那么好)</span>
+        <span class="desc"><strong>4 分 </strong>(质量不错，与卖家描述的基本一致，还是挺满意的)</span>
+        <span class="desc"><strong>5 分 </strong>(质量非常好，与卖家描述的完全一致，非常满意)</span>
+    </div>
+</body>
+</html>
