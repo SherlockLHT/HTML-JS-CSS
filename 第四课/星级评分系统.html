@@ -39,6 +39,7 @@
             background-image: url(./star.png);
             background-repeat: no-repeat;
             background-position-y: 0;
+            cursor: pointer;
         }
         .over{
             background-position-y: -28px;
@@ -50,14 +51,15 @@
         strong{
             color: #ff662f;
         }
-        .desc{
+        .no-display{
             display: none;
         }
     </style>
     <script>
         window.onload=function(){
             var all_stars = document.querySelectorAll("li");
-            var span_desc = document.querySelectorAll("desc");
+            var span_desc = document.querySelectorAll(".desc");
+            var current_star_index = -1;
             all_stars.forEach(function(star, index){
                 star.onmouseover=function(){
                     overStar(index);
@@ -66,7 +68,9 @@
                     leaveStar(index);
                 }
                 star.onclick=function(){
-                    
+                    current_star_index = index;
+                    leaveStar(index);
+                    showResult(index);
                 }
             });
             function overStar(index){
@@ -75,9 +79,15 @@
                 }
             }
             function leaveStar(index){
-                for(var i = 0; i <= index; i++){
+                for(var i = current_star_index + 1; i < 5; i++){
                     all_stars[i].classList.remove("over");
                 }
+            }
+            function showResult(index){
+                span_desc.forEach(function(desc, index){
+                    desc.classList.add("no-display");
+                });
+                span_desc[index].classList.remove("no-display");
             }
         }
     </script>
@@ -92,11 +102,11 @@
             <li></li>
             <li></li>
         </ul>
-        <span class="desc"><strong>1 分 </strong>(差得太离谱，与卖家描述的严重不符，非常不满)</span>
-        <span class="desc"><strong>2 分 </strong>(部分有破损，与卖家描述的不符，不满意)</span>
-        <span class="desc"><strong>3 分 </strong>(质量一般，没有卖家描述的那么好)</span>
-        <span class="desc"><strong>4 分 </strong>(质量不错，与卖家描述的基本一致，还是挺满意的)</span>
-        <span class="desc"><strong>5 分 </strong>(质量非常好，与卖家描述的完全一致，非常满意)</span>
+        <span class="desc no-display"><strong>1 分 </strong>(差得太离谱，与卖家描述的严重不符，非常不满)</span>
+        <span class="desc no-display"><strong>2 分 </strong>(部分有破损，与卖家描述的不符，不满意)</span>
+        <span class="desc no-display"><strong>3 分 </strong>(质量一般，没有卖家描述的那么好)</span>
+        <span class="desc no-display"><strong>4 分 </strong>(质量不错，与卖家描述的基本一致，还是挺满意的)</span>
+        <span class="desc no-display"><strong>5 分 </strong>(质量非常好，与卖家描述的完全一致，非常满意)</span>
     </div>
 </body>
 </html>
