@@ -54,11 +54,36 @@
         .no-display{
             display: none;
         }
+        p{
+            margin: 0;
+            padding: 10px;
+            clear: both;    /*清除前面元素的浮动带来的影响 */
+            background-image: url(./icon.gif);
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+            position: relative;
+            top: 5px;
+            height: 50px;
+            width: 170px;
+            color: #ff6607;
+            font-size: 12px;
+            font-family: Arial, Helvetica, sans-serif;
+            line-height: 19px;
+        }
+        p span{
+            padding: 0;
+            margin: 0;
+            line-height: 19px;
+        }
+        .p-desc{
+            display: none;
+        }
     </style>
     <script>
         window.onload=function(){
             var all_stars = document.querySelectorAll("li");
             var span_desc = document.querySelectorAll(".desc");
+            var all_p = document.querySelectorAll("p");
             var current_star_index = -1;
             all_stars.forEach(function(star, index){
                 star.onmouseover=function(){
@@ -76,12 +101,15 @@
             function overStar(index){
                 for(var i = 0; i <= index; i++){
                     all_stars[i].classList.add("over");
+                    all_p[i].classList.add("p-desc");
                 }
+                all_p[index].classList.remove("p-desc");
             }
             function leaveStar(index){
                 for(var i = current_star_index + 1; i < 5; i++){
                     all_stars[i].classList.remove("over");
                 }
+                all_p[index].classList.add("p-desc");
             }
             function showResult(index){
                 span_desc.forEach(function(desc, index){
@@ -107,6 +135,11 @@
         <span class="desc no-display"><strong>3 分 </strong>(质量一般，没有卖家描述的那么好)</span>
         <span class="desc no-display"><strong>4 分 </strong>(质量不错，与卖家描述的基本一致，还是挺满意的)</span>
         <span class="desc no-display"><strong>5 分 </strong>(质量非常好，与卖家描述的完全一致，非常满意)</span>
+        <p class="p-desc" style="left: 20px;">1分 很不满意<span>差得太离谱，与卖家描述的严重不符，非常不满</span></p>
+        <p class="p-desc" style="left: 45px;">2分 很不满意<span>部分有破损，与卖家描述的不符，不满意</span></p>
+        <p class="p-desc" style="left: 70px;">3分 很不满意<span>质量一般，没有卖家描述的那么好</span></p>
+        <p class="p-desc" style="left: 95px;">4分 很不满意<span>质量不错，与卖家描述的基本一致，还是挺满意的</span></p>
+        <p class="p-desc" style="left: 120px;">5分 很不满意<span>质量非常好，与卖家描述的完全一致，非常满意</span></p>
     </div>
 </body>
 </html>
