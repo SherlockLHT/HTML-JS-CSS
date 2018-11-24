@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>大预览图跟随鼠标</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        .box{
+            padding: 0;
+            margin: 10px auto;
+            width: 808px;
+        }
+        ul{
+            padding: 0;
+            margin: 0;
+            overflow: hidden;
+        }
+        li{
+            border: 1px solid #dddddd;
+            width: 180px;
+            height: 180px;
+            list-style-type: none;
+            padding: 0;
+            margin: 10px;
+            float: left;
+            overflow: hidden;
+            cursor: pointer;
+        }
+        li img{
+            width: 100%;
+        }
+        li:hover{
+            border-color: #a10000;
+        }
+        .big{
+            width: 400px;
+            height: 400px;
+            border: 1px solid #dddddd;
+            display: none;
+            position: absolute;
+        }
+        .big-show{
+            display: block;
+        }
+        .big img{
+            width: 100%;
+        }
+    </style>
+    <script>
+        window.onload=function(){
+            // document.onmousemove=function(e){
+            //     console.log(e.clientX + "," + e.clientY);
+            //     console.log(e.pageX + "," + e.pageY);
+            //     console.log(e.screenX + "," + e.screenY);
+            // }
+            document.onmousemove=function(e){
+                big_div.style.top = e.pageY + 20 + "px";
+                big_div.style.left = e.pageX + 20 + "px";
+                console.log(e.pageY);
+                console.log(big_div.style.top);
+            }
+            var all_small_imgs = document.querySelectorAll("li img");
+            var big_img = document.querySelector(".big img");
+            var big_div = document.querySelector(".big");
+            all_small_imgs.forEach(function(small_img, index){
+                small_img.onmouseover=function(e){
+                    big_div.classList.add("big-show");
+                    big_img.src=this.src.replace(".jpg", "_big.jpg");
+                    
+                }
+                small_img.onmouseleave=function(){
+                    big_div.classList.remove("big-show");
+                }
+            });
+        }
+    </script>
+</head>
+<body>
+    <div class="box">
+        <ul>
+            <li><img src="./shirt_1.jpg"></li>
+            <li><img src="./shirt_2.jpg"></li>
+            <li><img src="./shirt_3.jpg"></li>
+            <li><img src="./shirt_4.jpg"></li>
+        </ul>
+    </div>
+    <div class="big" style="top:0;left:0;">
+        <img src="./shirt_1_big.jpg">
+    </div>
+</body>
+</html>
