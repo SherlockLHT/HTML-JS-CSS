@@ -31,9 +31,12 @@
             cursor: pointer;
             color: #333333;
         }
-        div ul li:hover{
+        .current{
             background-color: #8f8f8f;
             color: white;
+        }
+        .em-current{
+            background-color: #999999;
         }
         em{
             float: left;
@@ -78,6 +81,17 @@
             document.onclick=function(){
                 elementNone(menu);
             }
+            var all_ems = document.querySelectorAll("em");
+            document.querySelectorAll("div ul li").forEach(function(li, index){
+                li.onmouseover=function(){
+                    this.classList.add("current");
+                    all_ems[index].classList.add("em-current");
+                }
+                li.onmouseleave=function(){
+                    this.classList.remove("current");
+                    all_ems[index].classList.remove("em-current");
+                }
+            });
         }
         function elementNone(element){
             element.style.display="none";
