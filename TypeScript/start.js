@@ -1,15 +1,4 @@
-var Student = /** @class */ (function () {
-    function Student(firstName, middleInitial, lastName) {
-        this.firstName = firstName;
-        this.middleInitial = middleInitial;
-        this.lastName = lastName;
-        this.fullName = firstName + " " + middleInitial + " " + lastName;
-    }
-    return Student;
-}());
-function greeter(person) {
-    return "Hello, " + person.firstName + " " + person.lastName;
+var nums = [1, 2, "a", 4, 5];
+for (var index = 0; index < nums.length; index++) {
+    console.log(nums[index] + " " + typeof (nums[index]));
 }
-//let user = {firstName: "LHT", lastName: "Sherlock"};
-var user = new Student("l", "h", "t");
-console.log(greeter(user));
