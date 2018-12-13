@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>Vue实例</title>
+	<title>Vue.js</title>
 	<script src="../vue.js"></script>
 	<script>
 		window.onload = function () {
@@ -12,19 +12,56 @@
 					message: 'Hello Vue!'
 				}
 			});
-
-		}
-		function test() {
-			console.log('click');
-			app.data.message = '111';
+			var app2 = new Vue({
+				el:'#app-2',
+				data:{
+					message:'页面加载于' + new Date().toLocaleString()
+				}
+			});
+			var app3 = new Vue({
+				el:'#app-3',
+				data:{
+					seen:true
+				}
+			});
+			var app4 = new Vue({
+				el: '#app-4',
+				data: {
+					todos: [
+						{ text: '学习 JavaScript' },
+						{ text: '学习 Vue' },
+						{ text: '整个牛项目' }
+					]
+				}
+			});
+			document.querySelector("button").onclick=function(){
+				console.log('click');
+				app.message = '111';
+				app2.message = "changed";
+				app3.seen=!app3.seen;
+			}
 		}
 	</script>
 </head>
 <body>
+	<!-- sss -->
 	<div id="app">
 		{{ message }}
 	</div>
-	<button onclick="test()">改变值</button>
+	<div id="app-2">
+		<span v-bind:onclick="message">鼠标悬停</span>
+	</div>
+	<div id="app-3">
+		<p id="app-3" v-if="seen">现在能看到</p>
+	</div>
+	<div id="app-4">
+		<ol>
+			<li v-for="todo in todos">
+					{{todos.text}}
+			</li>
+		</ol>
+	</div>
+	<button>改变值</button>
 </body>
 
 </html>
