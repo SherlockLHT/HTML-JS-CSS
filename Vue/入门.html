@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Vue.js</title>
+	<style>
+		.class-1{
+			background-color: red;
+		}
+		.class-2{
+			color: yellow;
+		}
+	</style>
+	<script src="../vue.js"></script>
+	<script>
+		window.onload = function () {
+			var app7 = new Vue({
+				el: ".app-7",
+				data: {
+					itemList: [{
+							id: 0,
+							text: "item 1"
+						},
+						{
+							id: 1,
+							text: "item 2"
+						},
+						{
+							id: 2,
+							text: "item 3"
+						}
+					]
+				}
+			});
+			var app = new Vue({
+				el: '#vue-test',
+				data: {
+					text_1: "<h1>text test 1</h1>",
+					text_2: "text test 2",
+				},
+				methods: {
+					test_function: function () {
+						return "function test";
+					}
+				}
+			});
+			var app_button = new Vue({
+				el: "#app",
+				methods: {
+					change: function () {
+						console.log(app.$data.text_2);
+					}
+				}
+			});
+			var app6 = new Vue({
+				el:'#app-6',
+				data:{
+					message:"Hello World"
+				}
+			});
+			var app1 = new Vue({
+				el: '#app-10',
+				data: {
+					ok: true,
+					str: "Test"
+				}
+			});
+		}
+		Vue.component("todo-item", {
+			props: ["todo"],
+			template: "<li>{{todo.text}}</li>"
+		});
+	</script>
+</head>
+<body>
+	<div class="app-7">
+		<ol>
+			<todo-item v-for="item in itemList" v-bind:todo="item" v-bind:key="item.id">
+			</todo-item>
+		</ol>
+	</div>
+	<div id="vue-test" v-bind:class="{'class-1': true, 'class-2': true}">
+		<p v-html="text_1"></p>
+		<p>{{text_2}}</p>
+		<p>{{test_function()}}</p>
+	</div>
+	<button id="app" v-on:click="change">Change</button>
+	<div id="app-6">
+		<p>{{message}}</p>
+		<input type="checkbox" v-model="message">
+	</div>
+	<div id="app-10">
+		<p>{{10 + 12}}</p>
+		<p>{{ok? "YES": "NO"}}</p>
+		<p>{{str + "?"}}</p>
+	</div>
+</body>
+</html>
