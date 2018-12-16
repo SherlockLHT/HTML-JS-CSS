@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <script src="../vue.js"></script>
+    <script>
+        window.onload = function () {
+            var app = new Vue({
+                el: '#app',
+                data: {
+                    message: "sherlock"
+                },
+                computed: {
+                    dealedMessage:{
+                        get: function(){
+                            console.log('getter');
+                            return "Name: " + this.message;
+                        },
+                        set: function(new_message){
+                            console.log('setter');
+                            this.message = new_message;
+                        }
+                    }
+                    // dealedMessage: function(){
+                    //     return "Name: " + this.message;
+                    // }
+                },
+                methods: {
+                    change:function(){
+                        //this.message += "?";
+                        app.dealedMessage = "setter";
+                    }
+                }
+            });
+        };
+    </script>
+</head>
+<body>
+    <div id="app">
+        <p>{{ message }}</p>
+        <P>{{ dealedMessage }}</P>
+        <button v-on:click="change()">Change</button>
+    </div>
+</body>
+</html>
