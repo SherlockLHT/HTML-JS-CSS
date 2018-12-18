@@ -27,13 +27,19 @@
                     name:""
                 }
             });
+            new Vue({
+                el: "#app-3",
+                data: {
+                    value: ""
+                }
+            });
         }
     </script>
 </head>
 <body>
     <div id="app">
         <!-- <input type="text" v-model="message"> -->
-        <textarea v-model="message"></textarea>
+        <textarea v-model.trim="message"></textarea>
         <p style="white-space: pre-line;">{{ message }}</p>
     </div>
     <br>
@@ -58,6 +64,14 @@
         <label><input type="radio" v-model="name" value="222">222</label>
         <label><input type="radio" v-model="name" value="333">333</label>
         <p>{{ name }}</p>
+    </div>
+    <div id="app-3">
+        <select v-model="value">
+            <option value="1">1111111111111</option>
+            <option value="2">2222222222222</option>
+            <option value="3">3333333333333</option>
+        </select>
+        <p>{{ value }}</p>
     </div>
 </body>
 </html>
