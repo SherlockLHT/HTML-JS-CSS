@@ -13,9 +13,9 @@
                     sonClick: function(){
                         console.log("div");
                     },
-                    fatherClick: function(){
+                    fatherClick: function(e){
                         console.log("p");
-                        return false;
+                        e.preventDefault();
                     }
                 }
             });

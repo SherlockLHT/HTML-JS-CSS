@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>form</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="../vue.js"></script>
+    <script>
+        window.onload=function(){
+            new Vue({
+                el: "#app",
+                data: {
+                    message: ""
+                }
+            });
+            new Vue({
+                el:"#app1",
+                data:{
+                    checked: false,
+                    checkedName: []
+                }
+            });
+            new Vue({
+                el:"#app2",
+                data:{
+                    name:""
+                }
+            });
+        }
+    </script>
+</head>
+<body>
+    <div id="app">
+        <!-- <input type="text" v-model="message"> -->
+        <textarea v-model="message"></textarea>
+        <p style="white-space: pre-line;">{{ message }}</p>
+    </div>
+    <br>
+    <div id="app1">
+        <label>
+            <input type="checkbox" v-model="checked">{{checked}}
+        </label>
+        <br>
+        <label>
+            <input type="checkbox" v-model="checkedName" value="sherlock">sherlock
+        </label>
+        <label>
+            <input type="checkbox" v-model="checkedName" value="rock">rock
+        </label>
+        <label>
+            <input type="checkbox" v-model="checkedName" value="jacky">jacky
+        </label>    
+        <p>{{ checkedName }}</p>
+    </div>
+    <div id="app2">
+        <label><input type="radio" v-model="name" value="111">111</label>
+        <label><input type="radio" v-model="name" value="222">222</label>
+        <label><input type="radio" v-model="name" value="333">333</label>
+        <p>{{ name }}</p>
+    </div>
+</body>
+</html>
