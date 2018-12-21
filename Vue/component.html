@@ -11,14 +11,29 @@
             Vue.component('custom-control', {
                 props: ["custom_attr", "attr"],
                 template: '<button>自定义组件!{{attr}}:{{custom_attr}}</button>',
-                data: function(){   //data必须是函数,以保证是复用时不会串掉
+                data: function () { //data必须是函数,以保证是复用时不会串掉
                     return {
                         count: 0
                     }
                 }
             });
+            Vue.component('blog-post', {
+                props: ['post'],
+                template: `
+                    <div>
+                        <h1>{{ post.id }}</h1>
+                        <h1>{{ post.text }}</h1>
+                    </div>
+                    `
+            });
             new Vue({
-                el: '#app'
+                el: "#app",
+                data: {
+                    message: {
+                        id: 123,
+                        text: "contenta"
+                    }
+                }
             });
         }
     </script>
@@ -27,6 +42,7 @@
     <div id="app">
         <custom-control custom_attr="this is test" attr="1111"></custom-control>
         <custom-control custom_attr="this is test" attr="2222"></custom-control>
+        <blog-post id="app" post="111" v-bind:post="message"></blog-post>
     </div>
 </body>
 </html>
