@@ -21,28 +21,25 @@
                 props: ['post'],
                 template: `
                     <div>
-                        <h1>{{ post.id }}</h1>
-                        <h1>{{ post.text }}</h1>
+                        <h1>{{ post }}</h1>
+                        <button v-on:click="$emit('custom-event')">自定义事件</button>
                     </div>
                     `
             });
             new Vue({
                 el: "#app",
                 data: {
-                    message: {
-                        id: 123,
-                        text: "contenta"
-                    }
+                    message: "init"
                 }
             });
         }
     </script>
 </head>
 <body>
-    <div id="app">
+    <div>
         <custom-control custom_attr="this is test" attr="1111"></custom-control>
         <custom-control custom_attr="this is test" attr="2222"></custom-control>
-        <blog-post id="app" post="111" v-bind:post="message"></blog-post>
+        <blog-post id="app" post="111" v-bind:post="message" v-on:custom-event="message='change'"></blog-post>
     </div>
 </body>
 </html>
