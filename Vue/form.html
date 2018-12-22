@@ -39,7 +39,8 @@
 <body>
     <div id="app">
         <!-- <input type="text" v-model="message"> -->
-        <textarea v-model.trim="message"></textarea>
+        <!-- <textarea v-model.trim="message"></textarea> -->
+        <input v-bind:value="height" style="height:20px;">
         <p style="white-space: pre-line;">{{ message }}</p>
     </div>
     <br>
