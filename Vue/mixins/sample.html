@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="../../vue.js"></script>
+    <script>
+        window.onload=function(){
+            //定义一个混入对象
+            var myMixin = {
+                created: function(){
+                    this.hello()
+                },
+                methods: {
+                    hello: function(){
+                        console.log("hello from mixin");
+                    }
+                }
+            }
+            //定义一个使用混入对象的组件
+            var Component = Vue.extend({
+                mixins: [myMixin]
+            });
+
+            var component = new Component();
+        }
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
