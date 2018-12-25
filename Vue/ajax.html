@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>AJAX</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="../vue.js"></script>
+    <script src="https://cdn.staticfile.org/vue-resource/1.5.1/vue-resource.min.js"></script>
+</head>
+<body>
+    <div id="box">
+        <p>{{ message }}</p>
+        <button v-on:click="get">AJAX</button>
+    </div>
+    <script>
+        var vm = new Vue({
+            el: "#box",
+            data: {
+                message: "init"
+            },
+            methods:{
+                get: function(){
+                    console.log("GET");
+                    this.$http.get("./ajax.txt").then(
+                        function(response){
+                            this.message = response.body;
+                            console.log(response.body);
+                        }, function(){
+                            console.log("error");
+                    });
+                }
+            }
+        });
+    </script>
+</body>
+</html>
