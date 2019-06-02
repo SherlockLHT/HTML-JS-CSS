@@ -55,12 +55,15 @@
             width: 190px;
             height: 20px;
         }
-        textarea{
+        #input_content{
             width: 484px;
             height: 100px;
             resize: none;
             margin: 5px;
             overflow-x: hidden;
+            border-radius: 2px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 16px;
         }
         .text-tips{
             height: 30px;
@@ -109,17 +112,51 @@
             padding: 5px 5px 0 5px;
         }
     </style>
+    ><script src="../jquery-3.3.1.js"></script>
     <script>
-        window.onload=function(){
+        $(document).ready(function(){
             var all_heads = document.querySelectorAll("form ul img");
+            var current_head_img = all_heads[0];
             all_heads[0].classList.add("active-form-img");
-            all_heads.forEach(function(head, index){
-                head.onclick=function(){
+            all_heads.forEach(function (head, index) {
+                head.onclick = function () {
+                    current_head_img = this;
                     document.querySelector(".active-form-img").classList.remove("active-form-img");
                     this.classList.add("active-form-img");
                 }
-                
             });
+            $("#input_content").bind("input propertychange", "textarea", function(){
+                var text = this.value;
+                $("#count").html(140 - text.length);
+            });
+            $("#boardcast").click(function(){
+                var user_name = $("#userName").val();
+                var content_text = $("#input_content").val();
+                addContent(current_head_img, user_name, content_text);
+            });
+            var user_name = $("#userName").val();
+            var content_text  = "仿腾讯微博效果，欢迎大家测试！";
+            addContent(current_head_img, user_name, content_text);
+        });
+        function addContent(head_src, user_name, content){
+            console.log(head_src.getAttribute("src"));
+            console.log(user_name);
+            console.log(content);
+
+            console.log(getCurrentDateTime());
+        }
+        function getCurrentDateTime(){
+            var date = new Date();
+            var year = date.getFullYear();
+            var mouth = date.getMonth() + 1;
+            var day = date.getDay();
+            var hour = date.getHours();
+            var minutes = date.getMinutes();
+            var second = date.getSeconds();
+
+            var current_date_time = year + "-" + mouth + "-" + day + " " 
+            + hour + ":" + minutes + ":" + second;
+            return current_date_time;
         }
     </script>
 </head>
@@ -128,7 +165,7 @@
         <form>
             <p>来，说说你在做什么，想什么</p>
             <ul>
-                <li><input type="text"></li>
+                <li><input type="text" id="userName"></li>
                 <li><img src="./face1.gif"></li>
                 <li><img src="./face2.gif"></li>
                 <li><img src="./face3.gif"></li>
@@ -138,8 +175,8 @@
                 <li><img src="./face7.gif"></li>
                 <li><img src="./face8.gif"></li>
             </ul>
-            <textarea></textarea>
-            <submit></submit>
+            <textarea id="input_content"></textarea>
+            <submit id="boardcast"></submit>
             <span class="text-tips">个字</span>            
             <span class="text-tips" id="count">140</span>
             <span class="text-tips">还能输入</span>
