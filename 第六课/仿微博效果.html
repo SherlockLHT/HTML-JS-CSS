@@ -111,8 +111,19 @@
             height: 25px;
             padding: 5px 5px 0 5px;
         }
+        .content_list{
+            padding: 0;
+            margin: 10px;
+        }
+        .content_list li{
+            list-style-type: none;
+        }
+        .list-content{
+            display: inline;
+            
+        }
     </style>
-    ><script src="../jquery-3.3.1.js"></script>
+    <script src="../jquery-3.3.1.js"></script>
     <script>
         $(document).ready(function(){
             var all_heads = document.querySelectorAll("form ul img");
@@ -183,8 +194,17 @@
         </form>
         <div class="content">
             <p><span>大家在说</span></p>
-            <ul>
-                <li></li>
+            <ul class="content_list">
+                <li>
+                    <div class="list-content">
+                        <img src="./face1.gif">
+                        <div>
+                            <span>Sherlock:</span>
+                            <span>仿腾讯微博功能，欢迎大家测试！</span>
+                            <div>07月03日 20:19</div>
+                        </div>
+                    </div>
+                </li>
             </ul>
         </div>
     </div>
