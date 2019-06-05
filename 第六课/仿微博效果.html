@@ -11,6 +11,7 @@
         }
         .outer{
             width: 500px;
+            height: 280px;
             margin: 10px auto;
             padding: 10px;
             border-radius: 5px;
@@ -93,9 +94,9 @@
             font-family:'Times New Roman', Times, serif;
         }
         .content{
-            margin: 10px 0 0 0;
-            padding: 10px;
-            width: 480px;
+            margin-top: 10px;
+            padding: 0;
+            width: 500px;
             height: 200px;
         }
         .content p{
@@ -112,15 +113,52 @@
             padding: 5px 5px 0 5px;
         }
         .content_list{
-            padding: 0;
-            margin: 10px;
+            padding: 0 0 0 13px;
+            margin: 0;
+            float: left;
         }
         .content_list li{
             list-style-type: none;
-        }
-        .list-content{
-            display: inline;
             
+            padding: 10px 0px 10px 0px;
+            border-bottom: 1px dashed #d8d8d8 ;
+            overflow: hidden;
+        }
+        .content_list li:hover{
+            background-color: #f5f5f5;
+        }
+        .head_img{
+            float: left;
+        }
+        .show-content{
+            float: left;
+            margin-left: 20px;
+        }
+        .user_name{
+            color: #2b4a78;
+            cursor: pointer;
+            float: left;
+            overflow: hidden;
+        }
+        .user_name:hover{
+            text-decoration: underline;
+        }
+        .micro-blog-content{
+            width: 410px;
+            font-family:Verdana, Geneva, Tahoma, sans-serif;
+            font-size: 16px;
+            padding-bottom: 5px;
+        }
+        .time{
+            color: #889db6;
+            font-size: 14px;
+        }
+        .time a{
+            float: right;
+        }
+        .time a:hover{
+            text-decoration: underline;
+            cursor: pointer;
         }
     </style>
     <script src="../jquery-3.3.1.js"></script>
@@ -145,17 +183,10 @@
                 var content_text = $("#input_content").val();
                 addContent(current_head_img, user_name, content_text);
             });
-            var user_name = $("#userName").val();
-            var content_text  = "仿腾讯微博效果，欢迎大家测试！";
-            addContent(current_head_img, user_name, content_text);
+            addContent(current_head_img, "Sherlock：", "仿腾讯微博效果，欢迎大家测试！");
+            addContent(current_head_img, "Sherlock：", "动态调整高度");
         });
-        function addContent(head_src, user_name, content){
-            console.log(head_src.getAttribute("src"));
-            console.log(user_name);
-            console.log(content);
-
-            console.log(getCurrentDateTime());
-        }
+        
         function getCurrentDateTime(){
             var date = new Date();
             var year = date.getFullYear();
@@ -168,6 +199,16 @@
             var current_date_time = year + "-" + mouth + "-" + day + " " 
             + hour + ":" + minutes + ":" + second;
             return current_date_time;
+        }
+        function addContent(head_src, user_name, content) {
+            var content = "<li><div class='list-content'><div class='head_img'><img src=\'" +
+            head_src.getAttribute("src") + "' ></div><div class='show-content'><div class='user_name'>" +
+            user_name + "</div><div class='micro-blog-content'>" + content + "</div><div class='time'>" +
+            getCurrentDateTime() + "<a>删除</a></div></div ></div ></li >";
+
+            $(".content_list").prepend(content);
+            var outer = $(".outer");
+            outer.height(outer.height() + 75);
         }
     </script>
 </head>
@@ -195,16 +236,6 @@
         <div class="content">
             <p><span>大家在说</span></p>
             <ul class="content_list">
-                <li>
-                    <div class="list-content">
-                        <img src="./face1.gif">
-                        <div>
-                            <span>Sherlock:</span>
-                            <span>仿腾讯微博功能，欢迎大家测试！</span>
-                            <div>07月03日 20:19</div>
-                        </div>
-                    </div>
-                </li>
             </ul>
         </div>
     </div>
