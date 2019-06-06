@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>自定义多级右键菜单</title>
+    <style>
+        div{
+            text-align: center;
+        }
+        .outer-menu{
+            width: 180px;
+            border: 1px solid #979797;
+            box-shadow: 5px 5px 5px #929292;
+            padding: 0;
+            margin: 0;
+            background-color: #f1f1f1;
+        }
+        ul{
+            list-style-type: none;
+            padding: 2px;
+            margin: 0;
+        }
+        li{
+            text-align: left;
+            border: 1px solid #f1f1f1;
+            padding: 2px 30px 2px 30px;
+            font-family:Arial, Helvetica, sans-serif;
+            font-size: 15px;
+        }
+        .active{
+            cursor: pointer;
+            border: 1px solid #aecff7;
+        }
+    </style>
+    <script src="../jquery-3.3.1.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("li").mouseenter(function(){
+                console.log(111);
+                $(event.target).addClass("active");
+            });
+            $("li").mouseleave(function(){
+                $(event.target).removeClass("active");
+            });
+        });
+    </script>
+</head>
+<body>
+    <div>自定义右键菜单，请在页面点击右键查看效果。</div>
+    <div class="outer-menu">
+        <ul>
+            <li><strong>JavaScript学习</strong></li>
+            <li>第一课</li>
+            <li>第二课</li>
+            <li>第三课</li>
+        </ul>
+    </div>
+</body>
+</html>
