@@ -119,10 +119,10 @@
         }
         .content_list li{
             list-style-type: none;
-            
             padding: 10px 0px 10px 0px;
             border-bottom: 1px dashed #d8d8d8 ;
             overflow: hidden;
+            opacity: 0;
         }
         .content_list li:hover{
             background-color: #f5f5f5;
@@ -181,10 +181,18 @@
             $("#boardcast").click(function(){
                 var user_name = $("#userName").val();
                 var content_text = $("#input_content").val();
-                addContent(current_head_img, user_name, content_text);
+                console.log(user_name);
+                if(!user_name){
+                    alert("请填写您的姓名！");
+                } 
+                else if(!content_text){
+                    alert("随便说点什么吧！");
+                } else {
+                    addContent(current_head_img, user_name, content_text, 1000);
+                }
             });
-            addContent(current_head_img, "Sherlock：", "仿腾讯微博效果，欢迎大家测试！");
-            addContent(current_head_img, "Sherlock：", "动态调整高度");
+            addContent(current_head_img, "Sherlock：", "仿腾讯微博效果，欢迎大家测试！", 0);
+            addContent(current_head_img, "Sherlock：", "动态调整高度", 0);
         });
         
         function getCurrentDateTime(){
@@ -200,15 +208,25 @@
             + hour + ":" + minutes + ":" + second;
             return current_date_time;
         }
-        function addContent(head_src, user_name, content) {
+        function addContent(head_src, user_name, content, time) {
             var content = "<li><div class='list-content'><div class='head_img'><img src=\'" +
             head_src.getAttribute("src") + "' ></div><div class='show-content'><div class='user_name'>" +
             user_name + "</div><div class='micro-blog-content'>" + content + "</div><div class='time'>" +
-            getCurrentDateTime() + "<a>删除</a></div></div ></div ></li >";
+            getCurrentDateTime() + "<a onclick='deleteContent()'>删除</a></div></div ></div></li>";
 
-            $(".content_list").prepend(content);
+            $(".content_list").prepend(content);    //插入元素，透明度为0
+            $(".content_list li").animate({opacity:1}, time); //缓慢改变透明度
+
             var outer = $(".outer");
             outer.height(outer.height() + 75);
+        }
+        function deleteContent(){
+            var parent_li = $(event.target).parents("li");
+            parent_li.animate({opacity:0}, 1000, function(){
+                parent_li.remove();
+                var outer = $(".outer");
+                outer.height(outer.height() - 75);
+            });
         }
     </script>
 </head>
