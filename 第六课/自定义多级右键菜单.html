@@ -87,7 +87,7 @@
                         var sub_menu_div = this.menus[index].subMenuElement;
                         if(sub_menu_div != null){
                             var element = window.event.target;
-                            //console.log(element.getBoundingClientRect());
+                            console.log(element.getBoundingClientRect());
                             sub_menu_div.style.top = element.getBoundingClientRect().y + "px";
                             sub_menu_div.style.left = element.getBoundingClientRect().x +
                                 element.getBoundingClientRect().width + "px";
