@@ -16,6 +16,14 @@
             padding: 0;
             margin: 0;
             background-color: #f1f1f1;
+            position: absolute;
+            display: block;
+        }
+        .outer-menu-width{
+            width: 200px;
+        }
+        .outer-menu-width2{
+            width: 220px;
         }
         ul{
             list-style-type: none;
@@ -29,32 +37,233 @@
             font-family:Arial, Helvetica, sans-serif;
             font-size: 15px;
         }
+        .sub-menu{
+            background-image: url(arrow.png);
+            background-repeat: no-repeat;
+            background-position: right 9px;
+        }
+        #right-menu li:first-child{
+            font-weight: bold;
+        }
+        li strong{
+            border: 0;
+        }
         .active{
             cursor: pointer;
             border: 1px solid #aecff7;
+            border-radius: 2px;
+            background-color: #f1f3f6;
         }
     </style>
-    <script src="../jquery-3.3.1.js"></script>
+    <script src="../vue.min.js"></script>
     <script>
-        $(document).ready(function(){
-            $("li").mouseenter(function(){
-                console.log(111);
-                $(event.target).addClass("active");
+        window.onload = function () {
+            var menu = new Vue({
+                el: '#right-menu',
+                data: {
+                    seen: false,
+                    x: 0,
+                    y: 0,
+                    menus: [
+                        { text: 'JavaScript学习', isActive: false, hasSubMenu: false, 
+                            subMenu: null, subMenuElement: null},
+                        { text: '第一课', isActive: false, hasSubMenu: true, 
+                            subMenu: null, subMenuElement: null},
+                        { text: '第二课' , isActive: false, hasSubMenu: true, 
+                            subMenu: null, subMenuElement: null},
+                        { text: '第三课' , isActive: false, hasSubMenu: true, 
+                            subMenu: null, subMenuElement: null}
+                    ]
+                },
+                methods: {
+                    mouseenter: function(index){
+                        this.cancelActiveAll();
+                        var sub_menu = this.menus[index].subMenu;
+                        if(sub_menu != null){
+                            sub_menu.seen = true;
+                        }
+                        Vue.set(this.menus[index], 'isActive', true);//使用vue.set修改数据，并重新渲染
+
+                        var sub_menu_div = this.menus[index].subMenuElement;
+                        if(sub_menu_div != null){
+                            var element = window.event.target;
+                            //console.log(element.getBoundingClientRect());
+                            sub_menu_div.style.top = element.getBoundingClientRect().y + "px";
+                            sub_menu_div.style.left = element.getBoundingClientRect().x +
+                                element.getBoundingClientRect().width + "px";
+                        }
+                    },
+                    cancelActiveAll: function () {
+                        this.menus.forEach(menu => {
+                            menu.isActive = false;
+                            var sub_menu = menu.subMenu;
+                            if(sub_menu != null){
+                                sub_menu.seen = false;
+                            }
+                        });
+                    }
+                }
             });
-            $("li").mouseleave(function(){
-                $(event.target).removeClass("active");
+            var first_sub_menu = new Vue({
+                el:'#first-sub-menu',
+                data:{
+                    seen: false,
+                    menus: [
+                        {text: '网页特效分析', isActive: false},
+                        {text: '响应用户操作', isActive: false},
+                        {text: '提示框效果', isActive: false},
+                        {text: '事件驱动', isActive: false},
+                        {text: '元素属性操作', isActive: false}
+                    ]
+                },
+                methods: {
+                    mouseenter: function(index){
+                        this.seen = true;
+                        Vue.set(this.menus[index], 'isActive', true);
+                        Vue.set(menu.menus[1], 'isActive', true);
+                    },
+                    mouseleave: function(index){
+                        Vue.set(this.menus[index], 'isActive', false);
+                    }
+                }
             });
-        });
+            var second_sub_menu = new Vue({
+                el: "#second-sub-menu",
+                data: {
+                    seen: false,
+                    menus: [
+                        {text: '改变网页背景颜色', isActive: false},
+                        {text: '函数传参', isActive: false},
+                        {text: '高重用性函数编写', isActive: false},
+                        {text: '126邮箱全选效果', isActive: false},
+                        {text: '循环及遍历操作', isActive: false}
+                    ]
+                },
+                methods: {
+                    mouseenter: function (index) {
+                        Vue.set(this.menus[index], 'isActive', true)
+                    },
+                    mouseleave: function (index) {
+                        Vue.set(this.menus[index], 'isActive', false)
+                    }
+                }
+            });
+            var third_sub_menu = new Vue({
+                el: "#third-sub-menu",
+                data: {
+                    seen: false,
+                    menus: [
+                        { text: 'JavaScript组成', isActive: false, hasSubMenu: true},
+                        { text: '运算符', isActive: false , hasSubMenu: false},
+                        { text: '程序流程控制', isActive: false , hasSubMenu: false},
+                        { text: '定时器的使用', isActive: false , hasSubMenu: true}
+                    ]
+                },
+                methods: {
+                    mouseenter: function (index) {
+                        Vue.set(this.menus[index], 'isActive', true);
+                    },
+                    mouseleave: function (index) {
+                        Vue.set(this.menus[index], 'isActive', false);
+                    }
+                }
+            });
+            var third_sub_sub_menu = new Vue({
+                el: "#third_sub_sub_menu",
+                data: {
+                    seen: true,
+                    menus: [
+                        { text: "ECMAScript", isActive: false},
+                        { text: "DOM", isActive: false },
+                        { text: "BOM", isActive: false },
+                        { text: "JavaScript兼容性来源", isActive: false}
+                    ]
+                },
+                methods: {
+                    mouseenter: function (index) {
+                        Vue.set(this.menus[index], 'isActive', true)
+                    },
+                    mouseleave: function (index) {
+                        Vue.set(this.menus[index], 'isActive', false)
+                    }
+                }
+            });
+
+            menu.menus[1].subMenu = first_sub_menu;
+            menu.menus[1].subMenuElement = document.querySelector("#first-sub-menu");
+            menu.menus[2].subMenu = second_sub_menu;
+            menu.menus[2].subMenuElement = document.querySelector("#second-sub-menu");
+            menu.menus[3].subMenu = third_sub_menu;
+            menu.menus[3].subMenuElement = document.querySelector("#third-sub-menu");
+
+            var menu_div = document.querySelector("#right-menu");
+            document.oncontextmenu = function (event) { //绑定右键菜单事件
+                if (event.button == 2) {
+                    menu.seen = true;
+
+                    //设置右键菜单的位置
+                    var menu_div = document.querySelector("#right-menu");
+                    menu_div.style.top = event.clientY + "px";
+                    menu_div.style.left = event.clientX + "px";
+
+                    return false;   //返回false，即可屏蔽右键菜单
+                }
+            }
+            document.onmouseup = function(){
+                menu.seen = false;
+                first_sub_menu.seen = false;
+                second_sub_menu.seen = false;
+                third_sub_menu.seen = false;
+            }
+        };
     </script>
 </head>
 <body>
     <div>自定义右键菜单，请在页面点击右键查看效果。</div>
-    <div class="outer-menu">
+    <div id="right-menu" class="outer-menu" v-show="seen">
         <ul>
-            <li><strong>JavaScript学习</strong></li>
-            <li>第一课</li>
-            <li>第二课</li>
-            <li>第三课</li>
+            <li
+                v-for="(menu, index) in menus" 
+                v-on:mouseenter="mouseenter(index)" 
+                v-bind:class="{active: menu.isActive, 'sub-menu': menu.hasSubMenu}">
+                {{ menu.text }}
+            </li>
+        </ul>
+    </div>
+    <div id="first-sub-menu" class="outer-menu" v-show="seen">
+        <ul>
+            <li v-for="(menu, index) in menus"
+                v-on:mouseenter="mouseenter(index)" @mouseleave="mouseleave(index)"
+                v-bind:class="{active: menu.isActive, 'sub-menu': menu.hasSubMenu}">
+                {{ menu.text }}
+            </li>
+        </ul>
+    </div>
+    <div id="second-sub-menu" class="outer-menu outer-menu-width"  v-show="seen">
+        <ul>
+            <li v-for="(menu, index) in menus"
+                @mouseenter="mouseenter(index)" @mouseleave="mouseleave(index)"
+                v-bind:class="{active: menu.isActive, 'sub-menu': menu.hasSubMenu}">
+                {{ menu.text }}
+            </li>
+        </ul>
+    </div>
+    <div id="third-sub-menu" class="outer-menu"  v-show="seen">
+        <ul>
+            <li v-for="(menu, index) in menus"
+                @mouseenter="mouseenter(index)" @mouseleave="mouseleave(index)"
+                v-bind:class="{active: menu.isActive, 'sub-menu': menu.hasSubMenu}">
+                {{ menu.text }}
+            </li>
+        </ul>
+    </div>
+    <div id="third_sub_sub_menu" class="outer-menu outer-menu-width2" v-show="seen">
+        <ul>
+            <li v-for="(menu, index) in menus"
+                @mouseenter="mouseenter(index)" @mouseleave="mouseleave(index)" 
+                v-bind:class="{active: menu.isActive, 'sub-menu': menu.hasSubMenu}">
+                {{ menu.text }}
+            </li>
         </ul>
     </div>
 </body>
