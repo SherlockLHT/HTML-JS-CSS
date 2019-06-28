@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>仿苹果电脑任务栏菜单</title>
     <style>
         .menu{
@@ -15,11 +17,19 @@
     <script src="../vue.min.js"></script>
     <script>
         window.onload = function () {
+            var pos = new Vue({
+                el: "#pos-show",
+                data: {
+                    screen:{x: 0, y: 0},
+                    client:{x:0, y:0},
+                    page:{x:0, y:0}
+                }
+            });
             var menu = new Vue({
                 el: "#menu-div",
                 data: {
                     images: [
-                        { src: "1.png", width: 64, ref: document.querySelector("img:") },
+                        { src: "1.png", width: 64 },
                         { src: "2.png", width: 64 },
                         { src: "3.png", width: 64 },
                         { src: "4.png", width: 64 },
@@ -28,27 +38,34 @@
                         { src: "7.png", width: 64 },
                         { src: "8.png", width: 64 },
                     ]
-                },
-                mounted(){
-
                 }
             });
             document.onmousemove = function(){
-                console.log(menu.images[0);
+                console.log(menu.images[0]);
+            }
+            document.onmousemove = function(event){
+                pos.screen.x = event.screenX;
+                pos.screen.y = event.screenY;
+
+                pos.client.x = event.x;
+                pos.client.y = event.y;
+
+                pos.page.x = event.pageX;
+                pos.page.y = event.pageY;
             }
         };
     </script>
 </head>
 <body>
+    <div id="pos-show">
+        <p> screen: {{ screen.x}}, {{ screen.y }}</p>
+        <p> client: {{client.x}}, {{client.y}} </p>
+        <p> page:   {{page.x}}, {{page.y}} </p>
+    </div>
     <div id="menu-div" class="menu">
         <img v-for="image in images" v-bind:src="image.src" 
             v-bind:width="image.width" v-bind:ref="">
     </div>
-    <ul class="picBox">
-        <li v-for="(item,index) in picArr">
-            <img :src="item.src" @click="selectImg(index)" ref="imgBox" />
-        </li>
-    </ul>
 </body>
 </html>
 
