@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>统计总价</title>
+    <style>
+        .outer{
+            border: 1px solid  #cccccc;
+            width: 90%;
+            min-height: 100px;
+            margin: 0 auto;
+        }
+        .title{
+            padding: 10px 10px;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 15px;
+            color: blue;
+            border-bottom: 1px solid #cccccc;
+        }
+        table{
+            width: 100%;
+            border-bottom: 1px solid #cccccc;
+        }
+        .product{
+            height: 80px;
+        }
+        .product img{
+            border: 1px solid #cccccc;
+            display: inline-block;
+            width: 80px;
+            height: 80px;
+        }
+        .product-desc{
+            float: right;
+            height: 82px;
+            margin: 0;
+            padding: 0;
+        }
+        .product-desc p{
+            font-size: 13px;
+            padding: 0;
+            margin: 0;
+        }
+        .first-td{
+            text-align: center;
+        }
+        .number{
+            border: 1px solid #cccccc;
+            height: 14px;
+            width: 59px;
+            padding: 0;
+            margin: 0;
+            position: relative;
+        }
+        .number a{
+            display: inline-block;
+            position: absolute;
+            height: 14px;
+            width: 14px;
+            color: black;
+            text-align: center;
+            vertical-align: middle;
+        }
+        .num-input{
+            display: inline-block;
+            position: absolute;
+            border-top: 0;
+            border-bottom: 0;
+            border-left: 1px solid #cccccc;
+            border-right: 1px solid #cccccc;
+            width: 14px;;
+            height: 14px;
+        }
+    </style>
+    <script src="../vue.min.js"></script>
+    <script>
+        window.onload=function(){
+            var app = new Vue({
+                el: "#main",
+                data: {
+                    productList: [
+                        {
+                            image: "1.jpg", name: "商品1", brand: "没有品牌",
+                            from: "中国", standard: "115kg", storehouse: "上海仓库"
+                        },
+                        {
+                            image: "1.jpg", name: "商品2", brand:"吊牌",
+                            from: "美国", standard: "100kg", storehouse: "北京仓库"
+                        }
+                    ]
+                }
+            });
+        }
+    </script>
+</head>
+<body>
+    <div class="outer">
+        <div class="title">购物清单</div>
+        <div id="main" class="content">
+            <table>
+                <thead>
+                    <tr>
+                        <th><input type="checkbox">全选</th>
+                        <th>商品</th>
+                        <th>数量</th>
+                        <th>单价（元）</th>
+                        <th>金额（元）</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="product in productList">
+                        <td class="first-td">
+                            <input type="checkbox">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        </td>
+                        <td>
+                            <div class="product">
+                                <img v-bind:src="product.image">
+                                <div class="product-desc">
+                                    <p>{{product.name}}</p>
+                                    <p>
+                                        品牌：{{product.brand}}
+                                        产地：{{product.from}}
+                                    </p>
+                                    <p>规格：{{product.standard}}</p>
+                                    <p>配送仓库：{{product.storehouse}}</p>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="number">
+                                <a>-</a>
+                                <input type="text" class="num-input">
+                                <a>+</a>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
