@@ -48,30 +48,44 @@
         }
         .number{
             border: 1px solid #cccccc;
-            height: 14px;
-            width: 59px;
-            padding: 0;
+            height: 20px;
+            width: 62px;
             margin: 0;
-            position: relative;
+            text-align: center;
+            display: inline-block;
         }
         .number a{
             display: inline-block;
-            position: absolute;
-            height: 14px;
-            width: 14px;
-            color: black;
+            height: 20px;
+            line-height: 20px;
+            width: 20px;
+            border: 0;
+            color: #cccccc;
             text-align: center;
             vertical-align: middle;
+            background-color: #f7f7f7;
+            cursor: pointer;
+        }
+        .number a:hover{
+            color: black;
+        }
+        .minus{
+            float: left;
+        }
+        .plus{
+            float: right;
         }
         .num-input{
-            display: inline-block;
-            position: absolute;
-            border-top: 0;
-            border-bottom: 0;
+            width: 20px;
+            height: 20px;
+            line-height: 20px;
+            border: none;
             border-left: 1px solid #cccccc;
             border-right: 1px solid #cccccc;
-            width: 14px;;
-            height: 14px;
+            text-align: center;
+            vertical-align: top;
+            margin: 0;
+            padding: 0;
         }
     </style>
     <script src="../vue.min.js"></script>
@@ -83,13 +97,20 @@
                     productList: [
                         {
                             image: "1.jpg", name: "商品1", brand: "没有品牌",
-                            from: "中国", standard: "115kg", storehouse: "上海仓库"
+                            from: "中国", standard: "115kg", storehouse: "上海仓库",
+                            number: 3
                         },
                         {
                             image: "1.jpg", name: "商品2", brand:"吊牌",
-                            from: "美国", standard: "100kg", storehouse: "北京仓库"
+                            from: "美国", standard: "100kg", storehouse: "北京仓库",
+                            number: 1
                         }
                     ]
+                },
+                computed:{
+                    dealCount: function(index){
+                        return productList[index].number;
+                    }
                 }
             });
         }
@@ -131,9 +152,9 @@
                         </td>
                         <td>
                             <div class="number">
-                                <a>-</a>
-                                <input type="text" class="num-input">
-                                <a>+</a>
+                                <a class="minus">-</a>
+                                <input type="text" class="num-input" v-bind:value="dealCount(0)">
+                                <a class="plus">+</a>
                             </div>
                         </td>
                     </tr>
