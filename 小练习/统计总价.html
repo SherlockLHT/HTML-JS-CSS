@@ -107,9 +107,15 @@
                         }
                     ]
                 },
-                computed:{
-                    dealCount: function(index){
-                        return productList[index].number;
+                methods:{
+                    addCount: function(index){
+                        this.productList[index].number++;
+                    },
+                    minusCount: function(index){
+                        this.productList[index].number--;
+                        this.productList[index].number = this.productList[index].number < 0? 
+                        0: 
+                        this.productList[index].number;
                     }
                 }
             });
@@ -132,7 +138,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="product in productList">
+                    <tr v-for="(product,index) in productList">
                         <td class="first-td">
                             <input type="checkbox">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         </td>
@@ -152,9 +158,9 @@
                         </td>
                         <td>
                             <div class="number">
-                                <a class="minus">-</a>
-                                <input type="text" class="num-input" v-bind:value="dealCount(0)">
-                                <a class="plus">+</a>
+                                <a class="minus" v-on:click="minusCount(index)">-</a>
+                                <input type="text" class="num-input" v-bind:value="product.number">
+                                <a class="plus" v-on:click="addCount(index)">+</a>
                             </div>
                         </td>
                     </tr>
