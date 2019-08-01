@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body{
+            font-size: 14px;
+            padding: 20px;
+        }
+        .text-keyword{
+            font-size: 16px;
+            height: 40px;
+            width: 100%;
+        }
+        .close{
+            float: right;
+        }
+        ul{
+            margin: 0;
+            padding: 0;
+        }
+        li{
+            list-style: none;
+            padding: 10px;
+            border: 1px solid white;
+            border-radius: 4px;
+        }
+        li:hover{
+            border-color: #03a9f4;
+        }
+        .close{
+            height: 18px;
+            line-height: 18px;
+            width: 18px;
+            cursor: pointer;
+            text-align: center;
+            vertical-align: middle;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div id="todolist">
+        <h1>小目标列表</h1>
+        <div>
+            <h2>添加小目标</h2>
+            <input class="text-keyword" type="input" placeholder="输入小目标后，按回车确认">
+            <p>总共有n个目标，已完成n，还有n条未完成</p>
+            <p>
+                <label><input type="radio" gooup="select" checked="true">所有目标</label>
+                <label><input type="radio" gooup="select">已完成目标</label>
+                <label><input type="radio" gooup="select">未完成目标</label>
+            </p>
+        </div>
+        <ul>
+            <li class="item">
+                <div>
+                    <span><input type="checkbox"></span>
+                    <span>html</span>
+                    <span class="close">X</span>
+                </div>
+            </li>
+            <li>
+                <span><input type="checkbox"></span>
+                <span>CSS3</span>
+                <span class="close">X</span>
+            </li>
+        </ul>
+    </div>
+</body>
+<script src="../vue.min.js"></script>
+<script type="text/javascript">
+    new Vue({
+        el: "#todolist",
+        data: {
+
+        },
+        computed:{
+
+        },
+        methods:{
+
+        }
+    });
+</script>
+</html>
